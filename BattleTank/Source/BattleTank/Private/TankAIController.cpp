@@ -7,21 +7,14 @@
 void ATankAIController::BeginPlay() 
 {
 	Super::BeginPlay();
-
-	auto PlayerControlledTank = GetPlayerTank();
-
-	if (!PlayerControlledTank) 
-	{
-		UE_LOG(LogTemp, Error, TEXT("There is no player controlled tank."));
-	}
-	else {
-		UE_LOG(LogTemp, Warning, TEXT("Player Controlled Tank seen by the AI is: %s"), *(PlayerControlledTank->GetName()));
-	}
 }
 
 void ATankAIController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	if (GetPlayerTank())
+		GetControlledTank()->AimAt(GetPlayerTank()->GetActorLocation());
 }
 
 ATank* ATankAIController::GetControlledTank() const

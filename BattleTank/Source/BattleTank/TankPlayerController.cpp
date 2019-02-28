@@ -42,13 +42,12 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector& OutHitLocation) cons
 	FVector2D CrosshairLocation = FVector2D(CrossHairXLocation*ViewportSizeX, CrossHairYLocation*ViewportSizeY);
 
 	FVector LookDirection;
-	FHitResult HitLocation;
 	if (GetLookDirection(CrosshairLocation, LookDirection))
 	{
 		//Line-trace along LookDirection, and see what we hit
 		if (GetLookVectorHitLocation(LookDirection, OutHitLocation)) 
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Hit Location: %s"), *OutHitLocation.ToString());
+			GetControlledTank()->AimAt(LookDirection);
 		}
 	}
 
