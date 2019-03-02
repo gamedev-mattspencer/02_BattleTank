@@ -47,7 +47,7 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector& OutHitLocation) cons
 		//Line-trace along LookDirection, and see what we hit
 		if (GetLookVectorHitLocation(LookDirection, OutHitLocation)) 
 		{
-			GetControlledTank()->AimAt(LookDirection);
+			GetControlledTank()->AimAt(OutHitLocation);
 		}
 	}
 
