@@ -15,6 +15,6 @@ public:
 	void Turn(float RelativeSpeed);
 
 private:
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditDefaultsOnly)
 	float MaxTurnDegrees = 5;
 };
