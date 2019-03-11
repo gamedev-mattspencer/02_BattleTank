@@ -20,6 +20,7 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 private:
-
+	//How close the ai can get to the player
+	float AcceptanceRadius = 3.f; //assuming cm right now
 	
 };

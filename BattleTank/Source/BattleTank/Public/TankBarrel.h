@@ -18,8 +18,6 @@ public:
 	//-1 is max downward movement, +1 is max upward movement
 	void Elevate(float RelativeSpeed);
 
-	void Turn(float RelativeSpeed);
-
 private:
 	UPROPERTY(EditDefaultsOnly, Category = Setup)
 	float MaxDegreesPerSecond = 20;
