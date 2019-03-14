@@ -21,6 +21,6 @@ public:
 
 private:
 	//How close the ai can get to the player
-	float AcceptanceRadius = 3.f; //assuming cm right now
+	float AcceptanceRadius = 3000.f; //assuming cm right now
 	
 };
