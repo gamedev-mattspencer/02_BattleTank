@@ -16,5 +16,5 @@ public:
 
 private:
 	UPROPERTY(EditDefaultsOnly)
-	float MaxTurnDegrees = 5;
+	float MaxTurnDegrees = 1;
 };
