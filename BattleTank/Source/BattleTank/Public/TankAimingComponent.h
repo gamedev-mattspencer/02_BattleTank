@@ -31,7 +31,7 @@ public:
 
 protected:
 	UPROPERTY(BlueprintReadOnly, Category = "State")
-	EFiringStatus FiringStatus = EFiringStatus::Reloading;
+	EFiringStatus FiringStatus = EFiringStatus::Aiming;
 
 public:	
 	UFUNCTION(BlueprintCallable, Category = Setup)
