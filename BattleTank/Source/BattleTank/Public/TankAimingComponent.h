@@ -17,6 +17,7 @@ enum class EFiringStatus : uint8
 
 class UTankBarrel;
 class UTankTurret;
+class AProjectile;
 class ATank;
 
 //Hold barrel properties
@@ -41,10 +42,22 @@ public:
 
 	void MoveBarrel(FVector AimDirection);
 
+	UFUNCTION(BlueprintCallable, Category = "Setup")
+	void Fire();
+
 	UTankBarrel* Barrel = nullptr;
 
 	UTankTurret* Turret = nullptr;
 	
 private:
+	UPROPERTY(EditDefaultsOnly, Category = Firing)
+	float ReloadTime = 5;
 
+	UPROPERTY(EditDefaultsOnly, Category = Firing)
+	float LaunchSpeed = 15000;
+
+	UPROPERTY(EditDefaultsOnly, Category = Setup)
+	TSubclassOf<AProjectile> ProjectileBlueprint;
+
+	double LastFireTime = 0;
 };

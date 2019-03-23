@@ -7,6 +7,7 @@
 #include "TankAIController.generated.h"
 
 class ATank;
+class UTankAimingComponent;
 
 UCLASS()
 class BATTLETANK_API ATankAIController : public AAIController
@@ -20,7 +21,12 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 private:
-	//How close the ai can get to the player
-	float AcceptanceRadius = 3000.f; //assuming cm right now
+	
+	float AcceptanceRadius = 300.f; //assuming cm right now
+
+	UPROPERTY(EditDefaultsOnly, Category = Firing)
+	float LaunchSpeed = 15000;
+
+	UTankAimingComponent* AimingComponent = nullptr;
 	
 };

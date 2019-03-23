@@ -7,7 +7,6 @@
 #include "Components/StaticMeshComponent.h"
 #include "Tank.generated.h"
 
-class UTankAimingComponent;
 class UTankBarrel;
 class UTankTurret;
 class AProjectile;
@@ -25,29 +24,8 @@ public:
 
 protected:
 
-	UPROPERTY(BlueprintReadOnly)
-	UTankAimingComponent* TankAimingComponent = nullptr;
-
 public:	
 
-	void AimAt(FVector HitLocation);
-
-	UFUNCTION(BlueprintCallable, Category = Firing)
-	void Fire();
-
 private:
-	//TODO remove after refractoring
-	UPROPERTY(EditDefaultsOnly, Category = Firing)
-	float LaunchSpeed = 100000;
-
-	UPROPERTY(EditDefaultsOnly, Category = Firing)
-	float ReloadTime = 5;
-
-	UPROPERTY(EditDefaultsOnly, Category = Setup)
-	TSubclassOf<AProjectile> ProjectileBlueprint; 
-
-	UTankBarrel* Barrel = nullptr; //Local barrel reference
-
-	double LastFireTime = 0;
 
 };

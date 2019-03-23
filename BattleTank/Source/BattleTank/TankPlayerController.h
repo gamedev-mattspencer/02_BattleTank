@@ -28,8 +28,6 @@ public:
 	bool GetLookVectorHitLocation(FVector LookDirection, FVector& HitLocation) const;
 
 protected:
-	UFUNCTION(BlueprintCallable, Category = "Setup")
-	ATank* GetControlledTank() const;
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "Setup")
 	void FoundAimingComponent(UTankAimingComponent* AimCompRef);
@@ -43,4 +41,9 @@ private:
 
 	UPROPERTY(EditDefaultsOnly)
 	float LineTraceRange = 1000000.f;
+
+	UPROPERTY(EditDefaultsOnly, Category = Firing)
+	float LaunchSpeed = 15000;
+
+	UTankAimingComponent* AimingComponent = nullptr;
 };
