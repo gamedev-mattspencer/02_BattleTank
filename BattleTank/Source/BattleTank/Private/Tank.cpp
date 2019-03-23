@@ -4,7 +4,6 @@
 #include "BattleTank/Public/TankBarrel.h"
 #include "BattleTank/Public/TankTurret.h"
 #include "BattleTank/Public/Projectile.h"
-#include "BattleTank/Public/TankMovementComponent.h"
 #include "Engine/World.h"
 #include "TankAimingComponent.h"
 
@@ -15,9 +14,16 @@ ATank::ATank()
 	PrimaryActorTick.bCanEverTick = false;
 }
 
+void ATank::BeginPlay()
+{
+	Super::BeginPlay();
+
+	TankAimingComponent = FindComponentByClass<UTankAimingComponent>();
+}
+
 void ATank::AimAt(FVector HitLocation)
 {
-	if (!TankAimingComponent) { return; }
+	if (!ensure(TankAimingComponent)) { return; }
 
 	TankAimingComponent->AimAt(HitLocation, LaunchSpeed);
 }
@@ -25,7 +31,7 @@ void ATank::AimAt(FVector HitLocation)
 void ATank::Fire()
 {
 	bool bIsReloaded = (FPlatformTime::Seconds() - LastFireTime) > ReloadTime;
-	if (Barrel && bIsReloaded) 
+	if (ensure(Barrel && bIsReloaded)) 
 	{
 		auto Projectile = GetWorld()->SpawnActor<AProjectile>(
 			ProjectileBlueprint,
