@@ -22,7 +22,7 @@ public:
 
 private:
 	
-	float AcceptanceRadius = 300.f; //assuming cm right now
+	float AcceptanceRadius = 3000.f; //assuming cm right now
 
 	UPROPERTY(EditDefaultsOnly, Category = Firing)
 	float LaunchSpeed = 15000;

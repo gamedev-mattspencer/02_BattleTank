@@ -10,7 +10,7 @@ void ATankAIController::BeginPlay()
 {
 	Super::BeginPlay();
 
-	AimingComponent = FindComponentByClass<UTankAimingComponent>();
+	AimingComponent = GetPawn()->FindComponentByClass<UTankAimingComponent>();
 }
 
 void ATankAIController::Tick(float DeltaTime)
@@ -23,9 +23,12 @@ void ATankAIController::Tick(float DeltaTime)
 
 	if (PlayerTank)
 	{
-		MoveToActor(PlayerTank, AcceptanceRadius); //TODO check acceptance radius is cm
-		AimingComponent->AimAt(PlayerTank->GetActorLocation(), LaunchSpeed);
-		AimingComponent->Fire();
+		MoveToActor(PlayerTank, AcceptanceRadius);
+		if(AimingComponent)
+		{
+			AimingComponent->AimAt(PlayerTank->GetActorLocation(), LaunchSpeed);
+			AimingComponent->Fire();
+		}
 	}
 
 }
