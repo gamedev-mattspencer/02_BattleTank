@@ -32,7 +32,7 @@ public:
 
 protected:
 	UPROPERTY(BlueprintReadOnly, Category = "State")
-	EFiringStatus FiringStatus = EFiringStatus::Aiming;
+	EFiringStatus FiringStatus = EFiringStatus::Reloading;
 
 public:	
 	UFUNCTION(BlueprintCallable, Category = Setup)
@@ -50,6 +50,8 @@ public:
 	UTankTurret* Turret = nullptr;
 	
 private:
+	virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) override;
+
 	UPROPERTY(EditDefaultsOnly, Category = Firing)
 	float ReloadTime = 5;
 
