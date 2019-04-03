@@ -26,40 +26,45 @@ class BATTLETANK_API UTankAimingComponent : public UActorComponent
 {
 	GENERATED_BODY()
 
-public:	
+public:
 	// Sets default values for this component's properties
 	UTankAimingComponent();
 
 protected:
 	UPROPERTY(BlueprintReadOnly, Category = "State")
-	EFiringStatus FiringStatus = EFiringStatus::Reloading;
+		EFiringStatus FiringStatus = EFiringStatus::Reloading;
 
-public:	
+public:
 	UFUNCTION(BlueprintCallable, Category = Setup)
-	void Initialize(UTankBarrel* BarrelToSet, UTankTurret* TurretToSet);
+		void Initialize(UTankBarrel* BarrelToSet, UTankTurret* TurretToSet);
 
 	void AimAt(FVector HitLocation, float LaunchSpeed);
 
 	void MoveBarrel(FVector AimDirection);
 
 	UFUNCTION(BlueprintCallable, Category = "Setup")
-	void Fire();
+		void Fire();
 
 	UTankBarrel* Barrel = nullptr;
 
 	UTankTurret* Turret = nullptr;
-	
+
 private:
 	virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) override;
 
-	UPROPERTY(EditDefaultsOnly, Category = Firing)
-	float ReloadTime = 5;
+	bool IsBarrelMoving();
 
 	UPROPERTY(EditDefaultsOnly, Category = Firing)
-	float LaunchSpeed = 15000;
+		float ReloadTime = 5;
+
+	UPROPERTY(EditDefaultsOnly, Category = Firing)
+		float LaunchSpeed = 15000;
 
 	UPROPERTY(EditDefaultsOnly, Category = Setup)
-	TSubclassOf<AProjectile> ProjectileBlueprint;
+		TSubclassOf<AProjectile> ProjectileBlueprint;
 
 	double LastFireTime = 0;
+
+	//Used to compare values for firing status as well as a variable in AimAt() method
+	FVector AimDirection;
 };
